@@ -284,7 +284,7 @@
 <script>
   // EmailJS — one submission alerts the whole team by email + text (via carrier gateways)
   const EMAILJS_PUBLIC_KEY  = "kCnqjluSOjp1jyRtt";
-  const EMAILJS_SERVICE_ID  = "service_wn14h4k";
+  const EMAILJS_SERVICE_ID  = "service_6492xk9";
   const EMAILJS_TEMPLATE_ID = "template_f1s0m2d";
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -342,7 +342,8 @@
     }).catch((err) => {
       btn.disabled = false;
       btn.textContent = 'Send Request';
-      status.textContent = "Something went wrong — please text us directly instead.";
+      const detail = (err && (err.text || err.message)) ? `: ${err.text || err.message}` : '';
+      status.textContent = `Send failed${detail}`;
       status.classList.add('err');
       console.error('EmailJS error:', err);
     });
